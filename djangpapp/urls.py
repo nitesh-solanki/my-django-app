@@ -30,5 +30,6 @@ urlpatterns = [
     path('scookie', views.setcookie),
     path('gcookie', views.getcookie),
     path('csv', views.getfile),
-    path('pdf', views.getpdf)
+    path('pdf', views.getpdf),
+    path('mail', views.mail),
 ]

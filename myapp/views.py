@@ -18,6 +18,10 @@ from myapp.models import Employee
 import datetime
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.decorators.http import require_http_methods
+
+from djangpapp import settings
+from django.core.mail import send_mail
+
 @require_http_methods(["GET"])
 
 
@@ -146,3 +150,15 @@ def getpdf(request):
     p.showPage()
     p.save()
     return response
+
+def mail(request):
+    subject = "Greetings"
+    msg = "Congratulations for your success"
+    to = "niteshnicks@gmail.com"
+    res = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+    if (res == 1):
+        msg = "Mail sent successfully"
+    else:
+        msg = "Mail could not sent"
+    
+    return HttpResponse(msg)
